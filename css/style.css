@@ -1,0 +1,45 @@
+a div {
+    cursor: pointer;
+}
+
+a {
+    color:black;
+    text-decoration: none;
+}
+
+
+#galuno {
+    border: 2px;
+    padding: 20px;
+    width: 100px;
+    background-color: bisque;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#gprof {
+    border: 2px;
+    padding: 20px;
+    width: 100px;
+    background-color: bisque;
+    position: absolute;
+    top: 180px;
+    left: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#gturma {
+    border: 2px;
+    padding: 20px;
+    width: 100px;
+    background-color: bisque;
+    position: absolute;
+    top: 260px;
+    left: 100px;
+    text-align: center;
+    font-weight: bold; 
+}
