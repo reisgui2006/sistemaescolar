@@ -1,45 +1,123 @@
-a div {
+/* Estilos gerais */
+div {
     cursor: pointer;
 }
 
 a {
-    color:black;
+    color: black;
     text-decoration: none;
 }
 
-
-#galuno {
-    border: 2px;
+/* Estilo para os botões de cada seção (aluno, professor, turma) */
+#galuno, #gprof, #gturma {
+    border: 2px solid #ddd; /* Corrigido para um border visível */
     padding: 20px;
     width: 100px;
     background-color: bisque;
     position: absolute;
-    top: 100px;
-    left: 100px;
     text-align: center;
     font-weight: bold;
+    cursor: pointer; /* Adicionado para indicar que são clicáveis */
+}
+
+#galuno {
+    top: 100px;
+    left: 100px;
 }
 
 #gprof {
-    border: 2px;
-    padding: 20px;
-    width: 100px;
-    background-color: bisque;
-    position: absolute;
     top: 180px;
     left: 100px;
-    text-align: center;
-    font-weight: bold;
 }
 
 #gturma {
-    border: 2px;
-    padding: 20px;
-    width: 100px;
-    background-color: bisque;
-    position: absolute;
     top: 260px;
     left: 100px;
+}
+
+/* Modal */
+.modal {
+    display: none; /* Inicialmente o modal está escondido */
+    position: fixed;
+    z-index: 1; /* Fica em cima dos outros conteúdos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Ajustei a largura do modal */
+    max-width: 500px; /* Define uma largura máxima */
+    border-radius: 8px; /* Adicionando bordas arredondadas */
+}
+
+/* Botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo dos botões */
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Verde para destacar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilo do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo para a lista de alunos */
+#alunos-lista div {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Cor de fundo leve */
+}
+
+/* Melhora na exibição da lista de alunos */
+#alunos-lista h2 {
+    margin-bottom: 20px;
     text-align: center;
-    font-weight: bold; 
+    color: #333;
+}
+
+/* Títulos nas seções */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
 }

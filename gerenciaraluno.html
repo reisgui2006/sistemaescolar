@@ -4,14 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alunos</title>
+    <link rel="stylesheet" href="style.css"> <!-- Referência para o arquivo CSS -->
 </head>
 <body>
-    <h1>Lista Alunos</h1>
+    <h1>Lista de Alunos</h1>
 
+    <!-- Botão para listar os alunos -->
     <button id="listar-alunos">Listar Alunos</button>
 
+    <!-- Div para exibir a lista de alunos -->
     <div id="alunos-lista"></div>
 
+    <!-- Botão para abrir o modal de criação de aluno -->
+    <button id="criar-aluno">Criar Aluno</button>
+
+    <!-- Modal para criação de aluno -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Criar Aluno</h2>
+            <form id="alunoForm">
+                <label for="nome">Nome:</label><br>
+                <input type="text" id="nome" name="nome" required><br><br>
+
+                <label for="data_nascimento">Data de Nascimento:</label><br>
+                <input type="date" id="data_nascimento" name="data_nascimento" required><br><br>
+
+                <label for="nota1">Nota do Primeiro Semestre:</label><br>
+                <input type="number" id="nota1" name="nota1" step="0.01" required><br><br>
+
+                <label for="nota2">Nota do Segundo Semestre:</label><br>
+                <input type="number" id="nota2" name="nota2" step="0.01" required><br><br>
+
+                <label for="turma_id">ID da Turma:</label><br>
+                <input type="number" id="turma_id" name="turma_id" required><br><br>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="resposta"></div>
+
+    <!-- Referência para os arquivos JavaScript -->
+    <script src="js/criaralunos.js"></script>
     <script src="js/alunos.js"></script>
 </body>
 </html>
