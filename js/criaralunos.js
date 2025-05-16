@@ -1,73 +1,73 @@
-// Obter elementos necessários
-const modal = document.getElementById("myModal");
-const btnCriarAluno = document.getElementById("criar-aluno");
-const btnFecharModal = document.getElementsByClassName("close")[0];
-
-// Abrir o modal ao clicar no botão "Criar Aluno"
-btnCriarAluno.onclick = function() {
-    modal.style.display = "block";
-}
-
-// Fechar o modal ao clicar no "X"
-btnFecharModal.onclick = function() {
-    modal.style.display = "none";
-}
-
-// Fechar o modal se o usuário clicar fora da área do modal
-window.onclick = function(event) {
-    if (event.target == modal) {
+(() => {
+    const modal = document.getElementById("myModal");
+    const tituloModal = document.getElementById("modal-titulo");
+    const form = document.getElementById("alunoForm");
+    const btnFecharModal = document.querySelector(".close");
+  
+    document.getElementById("criar-aluno").addEventListener("click", () => {
+      form.reset();
+      form.alunoId.value = "";
+      tituloModal.textContent = "Criar Aluno";
+      modal.style.display = "block";
+    });
+  
+    btnFecharModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
         modal.style.display = "none";
-    }
-}
-
-// API URL para criar o aluno
-const API_URL_CRIAR_ALUNO = "https://school-system-spi.onrender.com/api/alunos/";
-
-// Formulário e resposta
-const form = document.getElementById("alunoForm");
-const resposta = document.getElementById("resposta");
-
-// Submissão do formulário
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const nome = document.getElementById("nome").value;
-    const dataNascimento = document.getElementById("data_nascimento").value;
-    const nota1 = parseFloat(document.getElementById("nota1").value);
-    const nota2 = parseFloat(document.getElementById("nota2").value);
-    const turmaId = parseInt(document.getElementById("turma_id").value);
-
-    const aluno = {
-        nome: nome,
-        data_nascimento: dataNascimento,
-        nota_primeiro_semestre: nota1,
-        nota_segundo_semestre: nota2,
-        turma_id: turmaId
-    };
-
-    try {
-        const response = await fetch(API_URL_CRIAR_ALUNO, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(aluno)
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-        if (response.ok) {
-            resposta.innerHTML = `<p style="color: green;">✅ Aluno criado com sucesso!</p>`;
-            form.reset();
-            modal.style.display = "none"; // Fechar o modal após envio
-            listarAlunos(); // Atualiza a lista de alunos após criar
-        } else {
-            resposta.innerHTML = `<p style="color: red;">❌ Erro: ${data.detail || JSON.stringify(data)}</p>`;
+      }
+    });
+  
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+  
+      const alunoId = form.alunoId.value.trim();
+      const aluno = {
+        nome: form.nome.value.trim(),
+        data_nascimento: form.data_nascimento.value,
+        nota_primeiro_semestre: parseFloat(form.nota1.value),
+        nota_segundo_semestre: parseFloat(form.nota2.value),
+        turma_id: parseInt(form.turma_id.value, 10),
+      };
+  
+      if (!aluno.nome || !aluno.data_nascimento || isNaN(aluno.nota_primeiro_semestre) || isNaN(aluno.nota_segundo_semestre) || isNaN(aluno.turma_id)) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+      }
+  
+      try {
+        let url = "https://school-system-spi.onrender.com/api/alunos/";
+        let method = "POST";
+  
+        if (alunoId) {
+          url += alunoId;
+          method = "PUT";
         }
-    } catch (error) {
-        resposta.innerHTML = `<p style="color: red;">❌ Erro ao conectar com a API.</p>`;
-        console.error(error);
-    }
-});
+  
+        const response = await fetch(url, {
+          method: method,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(aluno),
+        });
+  
+        if (!response.ok) {
+          const errorData = await response.json();
+          alert("Erro: " + (errorData.detail || JSON.stringify(errorData)));
+          return;
+        }
+  
+        alert(`Aluno ${alunoId ? "editado" : "criado"} com sucesso!`);
+        modal.style.display = "none";
+        if (typeof window.listarAlunos === "function") {
+          window.listarAlunos();
+        }
+      } catch (error) {
+        alert("Erro ao conectar com a API.");
+        console.error("Erro ao enviar dados:", error);
+      }
+    });
+  })();
   

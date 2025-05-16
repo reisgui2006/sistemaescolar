@@ -37,27 +37,27 @@ a {
 
 /* Modal */
 .modal {
-    display: none; /* Inicialmente o modal está escondido */
+    display: none; /* Oculto por padrão */
     position: fixed;
-    z-index: 1; /* Fica em cima dos outros conteúdos */
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Conteúdo do modal */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: #fff;
+    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 60%; /* Ajustei a largura do modal */
-    max-width: 500px; /* Define uma largura máxima */
-    border-radius: 8px; /* Adicionando bordas arredondadas */
-}
+    border-radius: 5px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    }
 
 /* Botão de fechar */
 .close {
@@ -81,14 +81,14 @@ button {
     margin: 5px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50; /* Verde para destacar */
+    background-color: #af4c54; /* Verde para destacar */
     color: white;
     border: none;
     border-radius: 5px;
 }
 
 button:hover {
-    background-color: #45a049; /* Cor do botão ao passar o mouse */
+    background-color: #af4c54; /* Cor do botão ao passar o mouse */
 }
 
 /* Estilo do formulário */
